@@ -9,3 +9,5 @@
 (setenv "PATH" (format "%s:%s" termux-bin (getenv "PATH")))
 
 (push termux-bin exec-path)
+
+(setq telega-tdlib-min-version "1.8.50")

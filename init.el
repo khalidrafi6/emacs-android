@@ -1,12 +1,13 @@
-;; Start the server at launch to support opening files
-(server-start)
+(load "~/.emacs.d/barebones.el")
 
+;; Add tab key to tool bar
+(defun my-insert-tab-key ()
+  "Insert TAB key, like pressing TAB in keyboard would."
+  (interactive)
+  (push ?\t unread-command-events))
 
-;; Set default font
-(set-frame-font "JetBrains Mono")
-
-;; Prepending the Bangla font in default fontset for Emacs to automatically choose it for Bangla text
-(set-fontset-font "fontset-default" nil  "Noto Sans Bengali" nil 'prepend)
+;; Add to tool bar
+(tool-bar-add-item "right-arrow" 'my-insert-tab-key 'my-tab-btn)
 
 
 ;; Use Bash as the default shell
@@ -19,31 +20,26 @@ Example: (env-path \"PREFIX\" \"/bin/bash\") → \"/data/.../usr/bin/bash\""
 ;; Set value of the environment variable GIT_ASKPASS
 (setenv "GIT_ASKPASS" (conc-env "HOME" "/.git-askpass"))
 
-;; Use text mode by default for undefined file modes
-(setq-default major-mode 'text-mode)
-
-;; Because text-mode by default enables text-conversion-style, we don't need the following for Bangla phonetic keyboard or evil package
-;;(setq overriding-text-conversion-style t)
-
-;; A few customizable user options are initialized in complex ways, and these have to be set either via the customize interface or by using ‘customize-set-variable’/‘setopt’
-(setopt tool-bar-position 'bottom)
-
-;; Enable modifier bar for using modifier keys without keyboard
-(modifier-bar-mode 1)
-
-;; Enable visual-line-mode globally
-(global-visual-line-mode t)
-;; Enable visual-wrap-prefix-mode globally to indent wrapped lines
-(global-visual-wrap-prefix-mode t)
-
-
-;; Keep recent files list
-(recentf-mode t)
-
 ;; Define a function to easily get the value of Termux path from $PREFIX
 (defun get-prefix ()
     (getenv "PREFIX"))
+
+;; Configs for Telega, Emacs Telegram client
+(with-eval-after-load 'telega
+(setq telega-tdlib-min-version "1.8.50"))
+
 (setq telega-server-libs-prefix (get-prefix))
+
+(setq telega-use-images nil)
+
+(setq telega-chat-bidi-display-reordering t)
+
+;; To fix profile pics in Telega
+;; (setq telega-use-svg-base-uri nil)
+
+;; To fix emojis in Telega
+;; (setq telega-emoji-use-images nil)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -69,8 +65,8 @@ Example: (env-path \"PREFIX\" \"/bin/bash\") → \"/data/.../usr/bin/bash\""
  '(package-archives
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-     ("melpa-stable" . "https://stable.melpa.org/packages/")))
- '(package-selected-packages '(telega visual-fill-column))
+     ("melpa" . "https://melpa.org/packages/")))
+ '(package-selected-packages '(telega))
  '(safe-local-variable-values '((eval setq truncate-lines t)))
  '(touch-screen-precision-scroll t)
  '(touch-screen-preview-select t))
