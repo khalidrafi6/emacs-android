@@ -13,6 +13,8 @@
 ;; Use Bash as the default shell
 (setq shell-file-name (conc-prefix "/bin/bash"))
 
+(setq backup-directory-alist `(("." . "~/.saves/")))
+
 (defun conc-env (var &rest path-parts)
   "Concatenate environment variable VAR with PATH-PARTS.
 Example: (env-path \"PREFIX\" \"/bin/bash\") → \"/data/.../usr/bin/bash\""
@@ -31,6 +33,11 @@ Example: (env-path \"PREFIX\" \"/bin/bash\") → \"/data/.../usr/bin/bash\""
 (setq telega-server-libs-prefix (get-prefix))
 
 (setq telega-use-images nil)
+
+(dolist (font '("Noto Sans Bengali" "Noto Sans Symbols" "Dejavu Sans Mono" "FreeMono" "Unifont" "Unifont Upper"))
+ (set-fontset-font "fontset-default" nil font nil 'prepend))
+
+(global-set-key (kbd "C-x t") 'telega)
 
 (setq telega-chat-bidi-display-reordering t)
 

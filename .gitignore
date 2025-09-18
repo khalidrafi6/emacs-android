@@ -1,0 +1,5 @@
+*
+!.gitignore
+!.barebones.el
+!.init.el
+!.early-init.el

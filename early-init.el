@@ -10,4 +10,11 @@
 
 (push termux-bin exec-path)
 
-(setq telega-tdlib-min-version "1.8.50")
+;; Allow switching user-emacs-directory by reading an environment variable
+;; (when-let ((new-dir (getenv "NEW_EMACS_DIR")))
+;; (setq user-emacs-directory "~/spacemacs"))
+
+(unless (string-equal user-emacs-directory "/data/data/org.gnu.emacs/files/.emacs.d/")
+  (let ((alt-early-init (expand-file-name "early-init.el" user-emacs-directory)))
+    (when (file-exists-p alt-early-init)
+      (load alt-early-init nil 'nomessage))))
