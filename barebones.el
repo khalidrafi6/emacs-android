@@ -12,8 +12,8 @@
 ;; Use text mode by default for undefined file modes instead of fundamental mode
 (setq-default major-mode 'text-mode)
 
-;; We need the following for Bangla phonetic keyboard or key event-dependent packages
-;; (setq overriding-text-conversion-style t)
+;; We need the following for keybinding-dependent packages
+;; (setq overriding-text-conversion-style nil)
 
 ;; A few customizable user options are initialized in complex ways, and these have to be set either via the customize interface or by using ‘customize-set-variable’/‘setopt’
 (setopt tool-bar-position 'bottom)
