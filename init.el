@@ -1,51 +1,21 @@
-(load "~/.emacs.d/barebones.el")
-
-;; Add tab key to tool bar
-(defun my-insert-tab-key ()
-  "Insert TAB key, like pressing TAB in keyboard would."
-  (interactive)
-  (push ?\t unread-command-events))
-
-;; Add to tool bar
-(tool-bar-add-item "right-arrow" 'my-insert-tab-key 'my-tab-btn)
+(add-to-list 'load-path "~/emacs-android")
+(load "khalid-common")
+(load "khalid-cross")
 
 
-;; Use Bash as the default shell
-(setq shell-file-name (conc-prefix "/bin/bash"))
+;; Use Fish as the default shell
+(setq shell-file-name (conc-prefix "/bin/fish"))
 
-(setq backup-directory-alist `(("." . "~/.saves/")))
+(use-package goto-chg)
+(use-package cl-lib)
 
-(defun conc-env (var &rest path-parts)
-  "Concatenate environment variable VAR with PATH-PARTS.
-Example: (env-path \"PREFIX\" \"/bin/bash\") → \"/data/.../usr/bin/bash\""
-  (apply #'concat (getenv var) path-parts))
-;; Set value of the environment variable GIT_ASKPASS
-(setenv "GIT_ASKPASS" (conc-env "HOME" "/.git-askpass"))
-
-;; Define a function to easily get the value of Termux path from $PREFIX
-(defun get-prefix ()
-    (getenv "PREFIX"))
-
-;; Configs for Telega, Emacs Telegram client
-(with-eval-after-load 'telega
-(setq telega-tdlib-min-version "1.8.50"))
-
-(setq telega-server-libs-prefix (get-prefix))
-
-(setq telega-use-images nil)
-
-(dolist (font '("Noto Sans Bengali" "Noto Sans Symbols" "Dejavu Sans Mono" "FreeMono" "Unifont" "Unifont Upper"))
- (set-fontset-font "fontset-default" nil font nil 'prepend))
-
-(global-set-key (kbd "C-x t") 'telega)
-
-(setq telega-chat-bidi-display-reordering t)
-
-;; To fix profile pics in Telega
-;; (setq telega-use-svg-base-uri nil)
-
-;; To fix emojis in Telega
-;; (setq telega-emoji-use-images nil)
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (setq evil-want-keybinding nil)
+  :config
+  (evil-mode 1))
 
 
 (custom-set-variables
@@ -73,10 +43,9 @@ Example: (env-path \"PREFIX\" \"/bin/bash\") → \"/data/.../usr/bin/bash\""
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("nongnu" . "https://elpa.nongnu.org/nongnu/")
      ("melpa" . "https://melpa.org/packages/")))
- '(package-selected-packages '(telega))
+ '(package-selected-packages '(evil gnu-elpa-keyring-update goto-chg telega))
  '(safe-local-variable-values '((eval setq truncate-lines t)))
- '(touch-screen-precision-scroll t)
- '(touch-screen-preview-select t))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

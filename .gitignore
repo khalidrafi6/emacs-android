@@ -3,3 +3,5 @@
 !.barebones.el
 !.init.el
 !.early-init.el
+!khalid-common.el
+!khalid-cross.el
