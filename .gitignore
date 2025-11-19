@@ -4,4 +4,4 @@
 !init.el
 !early-init.el
 !khalid-common.el
-!khalid-cross.el
+!khalid-shared.el

@@ -1,6 +1,6 @@
 (add-to-list 'load-path "~/emacs-android")
 (load "khalid-common")
-(load "khalid-cross")
+(load "khalid-shared")
 
 
 ;; Use Fish as the default shell
