@@ -11,6 +11,8 @@
 
 (set-fontset-font t 'symbol "Symbola" nil 'prepend)
 
+(set-fontset-font t 'emoji "Noto Color Emoji" nil 'prepend)
+
 (message "Fontsets successfully set!")
 
 (setq touch-screen-preview-select t)
@@ -44,3 +46,17 @@ Example: (env-path \"PREFIX\" \"/bin/bash\") → \"/data/.../usr/bin/bash\""
   )
 
 (setenv "EDITOR" "/data/data/org.gnu.emacs/lib/libemacsclient.so -c")
+
+(use-package telega
+  :defer t
+  :init
+  (setq telega-use-images nil)
+  (setq telega-emoji-use-images nil)
+  :config
+
+  (setq telega-tdlib-min-version "1.8.50")
+
+  (setq telega-server-libs-prefix (get-prefix))
+
+  ;; (setq telega-use-svg-base-uri nil)
+  )
