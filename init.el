@@ -6,16 +6,16 @@
 ;; Use Fish as the default shell
 (setq shell-file-name (conc-prefix "/bin/fish"))
 
-(use-package goto-chg)
-(use-package cl-lib)
+;; (use-package goto-chg)
+;; (use-package cl-lib)
 
-(use-package evil
-  :ensure t
-  :init
-  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
-  (setq evil-want-keybinding nil)
-  :config
-  (evil-mode 1))
+;; (use-package evil
+;;   :ensure t
+;;   :init
+;;   (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+;;   (setq evil-want-keybinding nil)
+;;   :config
+;;   (evil-mode 1))
 
 
 (custom-set-variables

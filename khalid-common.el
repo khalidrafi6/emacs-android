@@ -3,17 +3,20 @@
 (tool-bar-mode)
 
 
-(set-fontset-font t 'unicode "Symbols Nerd Font Mono" nil 'prepend)
+(when (display-graphic-p)
 
-(dolist (font '("Noto Sans Arabic" "Noto Sans Bengali"))
-  (set-fontset-font "fontset-default" nil font nil 'prepend))
-(setq use-default-font-for-symbols nil)
+  (set-fontset-font t 'unicode "Symbols Nerd Font Mono" nil 'prepend)
 
-(set-fontset-font t 'symbol "Symbola" nil 'prepend)
+  (dolist (font '("Noto Sans Arabic" "Noto Sans Bengali"))
+    (set-fontset-font "fontset-default" nil font nil 'prepend))
+  (setq use-default-font-for-symbols nil)
 
-(set-fontset-font t 'emoji "Noto Color Emoji" nil 'prepend)
+  (set-fontset-font t 'symbol "Symbola" nil 'prepend)
 
-(message "Fontsets successfully set!")
+  (set-fontset-font t 'emoji "Noto Color Emoji" nil 'prepend)
+
+  (message "Fontsets successfully set!")
+  )
 
 (setq touch-screen-preview-select t)
 
@@ -24,8 +27,8 @@
   (interactive)
   (push ?\t unread-command-events))
 
-;; Add to tool bar
 (tool-bar-add-item "right-arrow" 'my-insert-tab-key 'my-tab-btn)
+;;;;
 
 
 ;; (setq backup-directory-alist `(("." . "~/.saves/")))
@@ -60,3 +63,8 @@ Example: (env-path \"PREFIX\" \"/bin/bash\") → \"/data/.../usr/bin/bash\""
 
   ;; (setq telega-use-svg-base-uri nil)
   )
+
+
+(setenv "PATH" (format "%s:%s" (expand-file-name "~/.local/bin/") (getenv "PATH")))
+
+(push (expand-file-name "~/.local/bin/") exec-path)
