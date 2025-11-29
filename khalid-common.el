@@ -65,6 +65,14 @@ Example: (env-path \"PREFIX\" \"/bin/bash\") → \"/data/.../usr/bin/bash\""
   )
 
 
+(use-package org-alert
+  :config
+  (org-alert-enable))
+
+
 (setenv "PATH" (format "%s:%s" (expand-file-name "~/.local/bin/") (getenv "PATH")))
 
 (push (expand-file-name "~/.local/bin/") exec-path)
+
+(defun khalid/start-rdircd ()
+  (start-process-shell-command "rdircd" "*rdircd log*" "proot-distro login --termux-home archlinux -- rdircd"))
