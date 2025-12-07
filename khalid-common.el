@@ -2,7 +2,6 @@
 
 (tool-bar-mode)
 
-
 (when (display-graphic-p)
 
   (set-fontset-font t 'unicode "Symbols Nerd Font Mono" nil 'prepend)
@@ -57,7 +56,7 @@ Example: (env-path \"PREFIX\" \"/bin/bash\") → \"/data/.../usr/bin/bash\""
   (setq telega-emoji-use-images nil)
   :config
 
-  (setq telega-tdlib-min-version "1.8.50")
+  ;; (setq telega-tdlib-min-version "1.8.50")
 
   (setq telega-server-libs-prefix (get-prefix))
 
@@ -65,9 +64,9 @@ Example: (env-path \"PREFIX\" \"/bin/bash\") → \"/data/.../usr/bin/bash\""
   )
 
 
-(use-package org-alert
-  :config
-  (org-alert-enable))
+;; (use-package org-alert
+;;   :config
+;;   (org-alert-enable))
 
 
 (setenv "PATH" (format "%s:%s" (expand-file-name "~/.local/bin/") (getenv "PATH")))
@@ -76,3 +75,5 @@ Example: (env-path \"PREFIX\" \"/bin/bash\") → \"/data/.../usr/bin/bash\""
 
 (defun khalid/start-rdircd ()
   (start-process-shell-command "rdircd" "*rdircd log*" "proot-distro login --termux-home archlinux -- rdircd"))
+
+(setq browse-url-elinks-wrapper nil)
