@@ -1,7 +1,6 @@
 ;; Start the server at launch to support opening files
 (server-start)
 
-
 ;; Set default font
 (set-frame-font "JetBrains Mono")
 
@@ -9,9 +8,7 @@
 ;; (set-fontset-font "fontset-default" nil "Noto Sans Bengali" nil 'prepend)
 
 ;; Use text mode by default for undefined file modes instead of fundamental mode
-(setq-default major-mode 'text-mode)
-
-;; We need the following for keybinding-dependent packages e.g. EViL
+(setq-default major-mode 'text-mode);; We need the following for keybinding-dependent packages e.g. EViL
 (setq overriding-text-conversion-style nil)
 
 ;; A few customizable user options are initialized in complex ways, and these have to be set either via the customize interface or by using ‘customize-set-variable’/‘setopt’
